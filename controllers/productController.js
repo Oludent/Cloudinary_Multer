@@ -110,6 +110,11 @@ exports.deleteProduct = async (req, res)=>{
                 message: `Product not found`
             })
         }
+
+         const oldFilePath = prod.productImage
+          fs.unlinkSync(oldFilePath);
+
+          
         await prod.destroy()
         res.status(200).json({
             message: `Product deleted successfully`
